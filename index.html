@@ -1,75 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    <form name = "form1">  
-    <input type="text" id="inp" >
-    <br>
-    <input type = "button" value = "1" id="one" >
-    <input type = "button" value = "2" id="two" >
-    <input type = "button" value = "3" id="three">
-    <input type = "button" value = "+"  id="plus">
-    <br>
-    <input type = "button" value = "4" id="four">
-    <input type = "button" value = "5" id="five">
-    <input type = "button" value = "6" id="six">
-    <input type = "button" value = "-" id="minus">
-    <br>
-    <input type = "button" value = "7" id="seven">
-    <input type = "button" value = "8" id="eight">
-    <input type = "button" value = "9" id="nine">
-    <input type = "button" value = "*" id="mul">
-    <br>
-    <input type = "button" value = "0" id="zero">
-    <input type = "button" value = "." id="dot">
-    <input type = "button" value = "=" id="equal">
-    <input type = "button" value = "/" id="div">
-    <br>
-
-    
-    <input type = "button" value = "C" id="clr">
-    
-
-    
-
-    
-
-    </form>
+  </head>
+  <body>
+    <div class="Container_class" id="Container_id">
+      <input type="text" id="inp" />
+    </div>
 
     <script>
-        document.getElementById("one").addEventListener("click",()=> document.getElementById("inp").value +='1');
-        document.getElementById("two").addEventListener("click",()=> document.getElementById("inp").value +='2');
-        document.getElementById("three").addEventListener("click",()=> document.getElementById("inp").value +='3');
-        document.getElementById("four").addEventListener("click",()=> document.getElementById("inp").value +='4');
-        document.getElementById("five").addEventListener("click",()=> document.getElementById("inp").value +='5');
-        document.getElementById("six").addEventListener("click",()=> document.getElementById("inp").value +='6');
-        document.getElementById("seven").addEventListener("click",()=> document.getElementById("inp").value +='7');
-        document.getElementById("eight").addEventListener("click",()=> document.getElementById("inp").value +='8');
-        document.getElementById("nine").addEventListener("click",()=> document.getElementById("inp").value +='9');
-        document.getElementById("zero").addEventListener("click",()=> document.getElementById("inp").value +='0');
-        document.getElementById("dot").addEventListener("click",()=> document.getElementById("inp").value +='.');
-        document.getElementById("plus").addEventListener("click",()=> document.getElementById("inp").value +='+');
-        document.getElementById("minus").addEventListener("click",()=> document.getElementById("inp").value +='-');
-        document.getElementById("mul").addEventListener("click",()=> document.getElementById("inp").value +='*');
-        document.getElementById("div").addEventListener("click",()=> document.getElementById("inp").value +='/');
-        document.getElementById("clr").addEventListener("click",funClr);
-        document.getElementById("equal").addEventListener("click",funEqual);
-
-        function funClr(){
-            document.getElementById("inp").value = "";
-        }
-        function funEqual(){
-            const ans = document.getElementById("inp").value;
-            document.getElementById("inp").value = eval(ans);
+      let i = 1;
+      let body = document.getElementById("Container_id");
+      let operators = ["+", "-", "*", "/"];
+      let operators_num = 0;
+      for (i; i <= 14; i++) {
+        let button = document.createElement("button");
+        if (i > 9 && i < 14) {
+          button.innerHTML = operators[operators_num];
+          operators_num++;
+        } else if (i == 14) {
+          button.innerHTML = "=";
+        } else {
+          button.innerHTML = i;
         }
 
-
-        
+        body.appendChild(button);
+        button.addEventListener("click", function () {
+          if (this.innerHTML === "=") {
+            document.getElementById("inp").value = eval(
+              document.getElementById("inp").value
+            );
+          } else {
+            document.getElementById("inp").value += this.innerHTML;
+          }
+        });
+      }
     </script>
-</body>
+  </body>
 </html>
