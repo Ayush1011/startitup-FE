@@ -4,39 +4,62 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
     <title>Document</title>
   </head>
   <body>
     <div class="Container_class" id="Container_id">
-      <input type="text" id="inp" />
+      <input type="text" id="inp" /><br />
     </div>
 
     <script>
-      let i = 1;
-      let body = document.getElementById("Container_id");
-      let operators = ["+", "-", "*", "/"];
-      let operators_num = 0;
-      for (i; i <= 14; i++) {
-        let button = document.createElement("button");
-        if (i > 9 && i < 14) {
-          button.innerHTML = operators[operators_num];
-          operators_num++;
-        } else if (i == 14) {
-          button.innerHTML = "=";
-        } else {
-          button.innerHTML = i;
-        }
+      let j = 1;
 
+      let body = document.getElementById("Container_id");
+      let operators = ["C","CC","%","/",1,2,3,"*",4,5,6,"+",7,8,9,"-",".",0,"00","="];
+      let operators_num = 0;
+      for (let i = 0; i < operators.length; i++) {
+        let button = document.createElement("button");
+
+        button.innerHTML = operators[i];
+        button.classList.add("add-btn");
+
+        if (
+          operators[i] === "C" ||
+          operators[i] === "CC" ||
+          operators[i] === "%" ||
+          operators[i] === "/" ||
+          operators[i] === "+" ||
+          operators[i] === "-" ||
+          operators[i] === "*" ||
+          operators[i] === "="
+        ) {
+          button.id = "operators-btn";
+        }
         body.appendChild(button);
+
         button.addEventListener("click", function () {
           if (this.innerHTML === "=") {
             document.getElementById("inp").value = eval(
               document.getElementById("inp").value
             );
-          } else {
+          } 
+          else if(this.innerHTML === 'CC'){
+              document.getElementById("inp").value = "";
+          }
+          else if(this.innerHTML === 'C'){
+              let out = document.getElementById("inp").value
+              if(out.length >0){
+                  document.getElementById("inp").value = out.substr(0,out.length-1);
+              }
+          }
+          else {
             document.getElementById("inp").value += this.innerHTML;
           }
         });
+
+        document.createElement("br");
+        j++;
       }
     </script>
   </body>
