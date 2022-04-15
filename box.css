@@ -1,8 +1,7 @@
 #container{
     width: 300px;
     height: 350px;
-    border-style:double;
-    border-color: black;
+    
 }
 
 .btn_class{
